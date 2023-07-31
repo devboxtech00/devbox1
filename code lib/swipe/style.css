@@ -1,0 +1,94 @@
+html {
+	 height: 100%;
+}
+ body {
+	 background: #eee;
+	 background-image: -webkit-linear-gradient(left top, #606c88, #3f4c6b);
+}
+ .container {
+	 position: absolute;
+	 left: 50%;
+	 top: 50%;
+	 padding: 24px;
+	 background: rgba(0, 0, 0, .1);
+	 overflow: hidden;
+	 width: 300px;
+	 transform: translate(-50%, -50%);
+}
+ .swipeable {
+	 position: relative;
+	 overflow: hidden;
+	 margin-bottom: 10px;
+	 vertical-align: bottom;
+	 backface-visibility: hidden;
+	 background: #999;
+	 box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+ .swipeable:last-child {
+	 margin: 0;
+}
+ .swipeable .inner {
+	 position: relative;
+	 z-index: 2;
+	 backface-visibility: hidden;
+	 background: #f7f7f7;
+	 padding: 5px 24px 5px 12px;
+	 box-shadow: 0 0 20px rgba(0, 0, 0, .3);
+	 cursor: grab;
+	 font-size: 12px;
+	 color: #555;
+}
+ .swipeable .inner:active {
+	 cursor: grabbing;
+}
+ .swipeable .action-button {
+	 position: absolute;
+	 z-index: 1;
+	 right: 0;
+	 top: 0;
+	 width: 100%;
+	 padding: 24px 20px 24px 0;
+	 cursor: pointer;
+	 text-align: right;
+	 color: white;
+	 letter-spacing: 2px;
+	 font-size: 12px;
+	 transition: 0.3s ease;
+}
+ .swipeable .action-button.delete {
+	 background: #d64d4d;
+}
+ .swipeable .action-button.delete:hover {
+	 background: #c32d2d;
+}
+ .swipeable .action-button.save {
+	 background: #74cb74;
+}
+ .swipeable .action-button.save:hover {
+	 background: #4fbd4f;
+}
+ .swipeable .tab-icon, .swipeable .tab-icon:before, .swipeable .tab-icon:after {
+	 background: #666;
+}
+ .swipeable .tab-icon {
+	 position: absolute;
+	 top: 50%;
+	 right: 10px;
+	 margin-top: -1px;
+	 margin-right: 1px;
+	 width: 2px;
+	 height: 2px;
+}
+ .swipeable .tab-icon:before, .swipeable .tab-icon:after {
+	 content: '';
+	 position: absolute;
+	 height: 100%;
+	 width: 100%;
+}
+ .swipeable .tab-icon:before {
+	 top: -4px;
+}
+ .swipeable .tab-icon:after {
+	 top: 4px;
+}
+ 

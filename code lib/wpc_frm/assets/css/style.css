@@ -1,0 +1,196 @@
+.wpc_admin_page {
+    background-color: #fff;
+    padding: 20px;
+  }
+  
+  .wpc_admin_page .top-information,
+  .wpc_admin_page .bottom-information {
+    padding: 0 20px;
+  }
+  
+  .wpc_admin_page table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before,
+  .wpc_admin_page table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before {
+     background-color: #29cc97;
+     top: 14px;
+     width: 16px;
+     height: 16px;
+     line-height: 16px;
+     border: 0;
+     font-weight: bold;
+     box-shadow: none;
+    
+    }
+  
+  .wpc_admin_page table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before, 
+  .wpc_admin_page table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
+    background-color: fec400;
+  }
+
+  #wpfooter{
+    position: static;
+  }
+  .wpc_table{
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .table_small_width{
+    width: 450px;
+  }
+  .buttons_container{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-wrap: wrap;
+  }
+  .buttons_container button{
+    width: 125px;
+    margin-left: 15px;
+    font-size: 15px;
+  }
+  .add_form_data{
+  background: #F4F4F4;
+  padding: 20px;
+  display: none;
+  }
+  td.delete_row{
+    text-align: right;
+  }
+  .delete_row_form button{
+    padding: 0 5px;
+  }
+  .delete_row_form button i{ 
+    padding: 0 !important;
+  }
+  .forms_feilds{
+    padding: 20px;
+  }
+  .form_feild_types{
+    padding: 25px 50px;
+    background: #f0f8ff;;
+    overflow-y: auto;
+    position: relative;
+    left: 0;
+  }
+  .form_edit_page .container,
+  .form_edit_page .froms_types{
+    padding-right: 0;
+    margin-left: 0;
+  }
+
+  
+  .form_feild_types .accordion {
+    max-width: 300px;
+    background: linear-gradient(to bottom right, #FFF, #f7f7f7);
+    background: #2A6CB9;
+    margin: 0 auto;
+    border-radius: 3px;
+    box-shadow: 0 10px 15px -20px rgba(0, 0, 0, 0.3), 0 30px 45px -30px rgba(0, 0, 0, 0.3), 0 80px 55px -30px rgba(0, 0, 0, 0.1);
+}
+.form_feild_types .heading {
+    color: #FFF;
+    font-size:14px;
+    border-bottom: 1px solid #e7e7e7;
+	letter-spacing: 0.8px;
+    padding: 15px;
+    cursor: pointer;  
+}
+.form_feild_types .heading:nth-last-child(2){
+    border-bottom:0; 
+}
+.form_feild_types .heading:hover {
+    background: transparent;
+    border-radius: 0;
+}
+.form_feild_types .heading:first-child:hover {
+    border-radius: 3px 3px 0 0;
+}
+.form_feild_types .heading:nth-last-child(2):hover{
+    border-radius:0 0 3px 3px;
+}
+.form_feild_types .heading::before {
+    content: '';
+    vertical-align: middle;
+    display: inline-block;
+    border-top: 7px solid #f5f5f5;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    float: right;
+    transform: rotate(0);
+    transition: all 0.5s;
+    margin-top: 5px;
+}
+.form_feild_types .active.heading::before {
+    transform: rotate(-180deg);
+}
+.form_feild_types .not-active.heading::before {
+    transform: rotate(0deg);
+}
+.form_feild_types .contents {
+	display: none;
+	background: #FFFAFA;
+	padding: 15px;
+    color: #7f8fa4;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+h1 {
+    font-size: 40px;
+    color: #000;
+    font-weight: normal;
+    text-align: center;
+    margin: 50px 0;
+}
+ 
+.form-group{
+  padding: 10px 2px;
+}
+.form-check .form-check-input {
+  float: none;
+  margin-left: -1.5em;
+  position: relative;
+  top: 2px;
+}
+
+.form-select {
+  display: block !important;
+  width: 100% !important;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem !important;
+  -moz-padding-start: calc(0.75rem - 3px) !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #212529 !important;
+  background-color: #fff !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.75rem center !important;
+  background-size: 16px 12px !important;
+  border: 1px solid #ced4da !important;
+  border-radius: 0.25rem !important;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.entry_status{
+  text-transform: capitalize;
+  text-align: right;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  border: 1px solid;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+}

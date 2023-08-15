@@ -10,3 +10,16 @@
 </head>
 
 <body <?php body_class(); ?>>
+
+
+           <?php
+			wp_nav_menu(
+				array(
+				'container'            => '',
+          'container_class'      => '',
+          'container_id'         => '',
+          'items_wrap'     => '<ul id="%1$s" class="%2$s navbar-nav ml-auto mr-auto ">%3$s</ul>',
+          'theme_location' => 'menu-1',
+				)
+			);
+			?>

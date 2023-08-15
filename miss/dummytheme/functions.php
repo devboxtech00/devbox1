@@ -111,6 +111,138 @@ if( function_exists('acf_add_options_page') ) {
 
 require get_template_directory() . '/inc/custom_functions.php';
 
+function mytheme_add_woocommerce_support() {
+	add_theme_support( 'woocommerce');
+  
+  }
+  add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
+  
+  add_theme_support( 'wc-product-gallery-zoom' );
+  add_theme_support( 'wc-product-gallery-lightbox' );
+  add_theme_support( 'wc-product-gallery-slider' );
+  
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart');
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+
+//* Add gallery thumbs to woocommerce shop page
+add_action('woocommerce_shop_loop_item_title','wps_add_extra_product_thumbs', 5);
+function wps_add_extra_product_thumbs() {
+
+	if ( is_shop() ) {
+
+		global $product;
+
+		$attachment_ids = $product->get_gallery_attachment_ids();
+
+		echo '<div class="p_gallery row justify-content-center">';
+
+		foreach( array_slice( $attachment_ids, 0,3 ) as $attachment_id ) {
+
+		  	$thumbnail_url = wp_get_attachment_image_src( $attachment_id, 'thumbnail' )[0];
+
+		  	echo '<div class="col-md-3">
+			  <img class="thumb" style=" height:65px; width:65px;"  src="' . $thumbnail_url . '"></div>';
+ 
+		}
+
+		echo '</div>';
+	
+	}
+
+ }
+
+
+ 
+		// add to cart on header
+		function my_header_add_to_cart_fragment( $fragments ) {
+ 
+			ob_start();
+			$count = WC()->cart->cart_contents_count;
+			?><a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>"><?php
+			if ( $count > 0 ) {
+				?>
+				<span class="cart-contents-count"><?php echo esc_html( $count ); ?></span>
+				<?php            
+			}
+				?></a><?php
+		 
+			$fragments['a.cart-contents'] = ob_get_clean();
+			 
+			return $fragments;
+		}
+		add_filter( 'woocommerce_add_to_cart_fragments', 'my_header_add_to_cart_fragment' );
+
+
+		function add_unit_product_price_display( $price ) {
+			$price .= '<span class="demo_price_txt">(Per Piece)</span>';
+			return $price;
+		}
+		add_filter( 'woocommerce_get_price_html', 'add_unit_product_price_display' );
+		add_filter( 'woocommerce_cart_item_price', 'add_unit_product_price_display' );
+
+
+/*
+** wooCommerce product details page custom add to cart redirect javacript
+*/
+
+function buy_now_submit_form() {
+ ?>
+  <script>
+      jQuery(document).ready(function(){
+          // listen if someone clicks 'Buy Now' button
+          jQuery('#buy_now_button').click(function(){
+              // set value to 1
+              jQuery('#is_buy_now').val('1');
+              //submit the form
+              jQuery('form.cart').submit();
+          });
+      });
+  </script>
+ <?php
+}
+add_action('woocommerce_after_add_to_cart_form', 'buy_now_submit_form');
+
+
+/*
+** wooCommerce product details page custom add to cart redirect 
+*/
+add_filter('woocommerce_add_to_cart_redirect', 'redirect_to_checkout');
+function redirect_to_checkout($redirect_url) {
+  if (isset($_REQUEST['is_buy_now']) && $_REQUEST['is_buy_now'] && $_REQUEST['is_buy_now'] == 1) {
+  	 $product_id = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $_REQUEST['add-to-cart'] ) );
+  	 $term_list = wp_get_post_terms($product_id,'product_cat',array('fields'=>'ids'));
+	 $cat_id = (int)$term_list[0];
+	 global $woocommerce;
+	 if($cat_id == 15){
+       $redirect_url = get_permalink( '268');
+	 }else if($cat_id == 25){
+       $redirect_url = get_permalink( '270 ');
+	 }else{
+	 	 $redirect_url = wc_get_checkout_url();
+	 }
+     
+    
+  }else{
+  	$redirect_url = wc_get_checkout_url();
+  }
+  return $redirect_url;
+}
+
+add_action( 'woocommerce_before_add_to_cart_quantity', 'qty_front_add_cart' );
+ 
+function qty_front_add_cart() {
+ echo '<div class="qty"> Quantity <span><a href="#" data-toggle="modal" data-target="#quntydis"><img class="woo_ico_sw" src="info.svg" alt=""></a></span> </div>'; 
+}
+
+function by_biehle_quantity_input_field_args( $args, $product ) {
+	if ( ! $product->is_sold_individually() ) {
+		$args['dropdown_steps'] = array( 1, 10, 25, 50, 75, 100, 150, 250 );
+	}
+
+	return $args;
+}
+add_filter( 'woocommerce_quantity_input_args', 'by_biehle_quantity_input_field_args', 10, 2 );
 
 
 
